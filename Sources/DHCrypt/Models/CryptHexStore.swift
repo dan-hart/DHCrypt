@@ -9,7 +9,7 @@ import Foundation
 import CryptoSwift
 
 public struct CryptHexStore: Codable {
-    var decrypted: Data? {
+    public var decrypted: Data? {
         let key = Array<UInt8>(hex: cryptKey)
         let iv = Array<UInt8>(hex: iv)
         let value = Array<UInt8>(hex: cryptValue)
@@ -17,10 +17,10 @@ public struct CryptHexStore: Codable {
         return Data(decrypted)
     }
     
-    let cryptKey: String
-    let iv: String
+    public let cryptKey: String
+    public let iv: String
     
-    let cryptValue: String
+    public let cryptValue: String
 }
 
 // MARK: CryptHexStore convenience initializers and mutators
