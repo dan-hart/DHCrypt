@@ -8,7 +8,7 @@
 import Foundation
 import CryptoSwift
 
-public struct CryptHexStore: Codable {
+public struct CryptHexStore: Codable, Equatable {
     public var decrypted: Data? {
         let key = Array<UInt8>(hex: cryptKey)
         let iv = Array<UInt8>(hex: iv)
@@ -25,6 +25,12 @@ public struct CryptHexStore: Codable {
 
 // MARK: CryptHexStore convenience initializers and mutators
 extension CryptHexStore {
+    init(keyHex: String, ivHex: String, valueHex: String) {
+        self.cryptKey = keyHex
+        self.iv = ivHex
+        self.cryptValue = valueHex
+    }
+    
     init(data: Data) throws {
         self = try newJSONDecoder().decode(CryptHexStore.self, from: data)
     }
@@ -61,8 +67,4 @@ func newJSONEncoder() -> JSONEncoder {
         encoder.dateEncodingStrategy = .iso8601
     }
     return encoder
-}
-
-extension CryptHexStore: Equatable {
-    
 }

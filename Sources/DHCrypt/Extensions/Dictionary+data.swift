@@ -8,7 +8,7 @@
 import Foundation
 
 public extension Dictionary where Key: Encodable, Value: Encodable {
-    public var data: Data? {
+    var data: Data? {
         return try? JSONEncoder().encode(self)
     }
 }

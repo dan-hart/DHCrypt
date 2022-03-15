@@ -8,11 +8,11 @@
 import Foundation
 
 public extension String {
-    public static func random(ofLength length: Int) -> String {
+    static func random(ofLength length: Int) -> String {
         return random(minimumLength: length, maximumLength: length)
     }
     
-    public static func random(minimumLength min: Int, maximumLength max: Int) -> String {
+    static func random(minimumLength min: Int, maximumLength max: Int) -> String {
         return random(
             withCharactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
             minimumLength: min,
@@ -20,7 +20,7 @@ public extension String {
         )
     }
 
-    public static func random(withCharactersInString string: String, minimumLength min: Int, maximumLength max: Int) -> String {
+    static func random(withCharactersInString string: String, minimumLength min: Int, maximumLength max: Int) -> String {
         guard min > 0 && max >= min else {
             return ""
         }

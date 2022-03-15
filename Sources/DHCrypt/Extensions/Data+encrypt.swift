@@ -9,12 +9,12 @@ import Foundation
 import CryptoSwift
 
 public extension Data {
-    public var asUInt8Array: [UInt8] {
+    var asUInt8Array: [UInt8] {
         [UInt8](self)
     }
     
     /// AES-encrypt this data with a 16-character encryption key
-    public func encrypt(using encryptionKey: String = String.random(ofLength: 16), with encoding: String.Encoding = .utf8) -> CryptHexStore? {
+    func encrypt(using encryptionKey: String = String.random(ofLength: 16), with encoding: String.Encoding = .utf8) -> CryptHexStore? {
         if encryptionKey.count != 16 { return nil }
         guard let encryptionKeyData = encryptionKey.data(using: encoding) else { return nil }
         let encryptionKeyArray = encryptionKeyData.asUInt8Array
