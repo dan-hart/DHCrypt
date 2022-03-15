@@ -27,4 +27,9 @@ class CryptHexStoreTests: XCTestCase {
         
         XCTAssertEqual(store, expected)
     }
+    
+    func testInit() {
+        let store = CryptHexStore.with(cryptKey: "", iv: "", cryptValue: "")
+        XCTAssertNotNil(store)
+    }
 }

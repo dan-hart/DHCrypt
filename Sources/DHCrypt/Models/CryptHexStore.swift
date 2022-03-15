@@ -24,13 +24,7 @@ public struct CryptHexStore: Codable, Equatable {
 }
 
 // MARK: CryptHexStore convenience initializers and mutators
-extension CryptHexStore {
-    init(keyHex: String, ivHex: String, valueHex: String) {
-        self.cryptKey = keyHex
-        self.iv = ivHex
-        self.cryptValue = valueHex
-    }
-    
+public extension CryptHexStore {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(CryptHexStore.self, from: data)
     }
@@ -49,6 +43,18 @@ extension CryptHexStore {
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
+    
+    static func with(
+         cryptKey: String,
+         iv: String,
+         cryptValue: String
+     ) -> CryptHexStore {
+         return CryptHexStore(
+             cryptKey: cryptKey,
+             iv: iv,
+             cryptValue: cryptValue
+         )
+     }
 }
 
 // MARK: - Helper functions for creating encoders and decoders
