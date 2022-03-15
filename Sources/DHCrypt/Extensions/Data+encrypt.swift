@@ -8,7 +8,7 @@
 import Foundation
 import CryptoSwift
 
-extension Data {
+public extension Data {
     public var asUInt8Array: [UInt8] {
         [UInt8](self)
     }
