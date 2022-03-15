@@ -1,3 +1,3 @@
 # DHCrypt
 
-A description of this package.
+Swift wrapper for AES encryption, with help from CryptoSwift
