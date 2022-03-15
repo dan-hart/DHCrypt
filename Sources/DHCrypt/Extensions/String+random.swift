@@ -20,14 +20,6 @@ public extension String {
         )
     }
 
-    static func random(withCharactersInString string: String, ofLength length: Int) -> String {
-        return random(
-            withCharactersInString: string,
-            minimumLength: length,
-            maximumLength: length
-        )
-    }
-
     static func random(withCharactersInString string: String, minimumLength min: Int, maximumLength max: Int) -> String {
         guard min > 0 && max >= min else {
             return ""

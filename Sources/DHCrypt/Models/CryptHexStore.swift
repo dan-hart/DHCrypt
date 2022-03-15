@@ -36,22 +36,6 @@ extension CryptHexStore {
         try self.init(data: data)
     }
 
-    init(fromURL url: URL) throws {
-        try self.init(data: try Data(contentsOf: url))
-    }
-
-    func with(
-        cryptKey: String? = nil,
-        iv: String? = nil,
-        cryptValue: String? = nil
-    ) -> CryptHexStore {
-        return CryptHexStore(
-            cryptKey: cryptKey ?? self.cryptKey,
-            iv: iv ?? self.iv,
-            cryptValue: cryptValue ?? self.cryptValue
-        )
-    }
-
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
@@ -79,3 +63,6 @@ func newJSONEncoder() -> JSONEncoder {
     return encoder
 }
 
+extension CryptHexStore: Equatable {
+    
+}

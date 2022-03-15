@@ -13,10 +13,8 @@ extension Data {
         [UInt8](self)
     }
     
-    /// AES-encrypt this data
-    /// - Parameters:
-    ///   - encryptionKey: 16-digit key
-    public func encrypt(using encryptionKey: String, with encoding: String.Encoding = .utf8) -> CryptHexStore? {
+    /// AES-encrypt this data with a 16-character encryption key
+    public func encrypt(using encryptionKey: String = String.random(ofLength: 16), with encoding: String.Encoding = .utf8) -> CryptHexStore? {
         if encryptionKey.count != 16 { return nil }
         guard let encryptionKeyData = encryptionKey.data(using: encoding) else { return nil }
         let encryptionKeyArray = encryptionKeyData.asUInt8Array
