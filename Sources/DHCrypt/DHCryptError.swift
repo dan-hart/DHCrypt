@@ -8,7 +8,9 @@
 import Foundation
 
 enum DHCryptError: String, Error, CaseIterable {
+    case invalidDocumentsPath
     case nilData
     case fileAlreadyExists
     case fileDoesNotExist
+    case emptyDirectoryNoJSONFiles
 }

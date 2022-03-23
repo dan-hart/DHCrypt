@@ -27,11 +27,14 @@ public struct CryptHexStore: Codable, Equatable {
 }
 
 public extension CryptHexStore {
+    /// Write this store to disk as a file
+    /// - Parameter path: the location to store the data + subfolder directory
+    /// - Returns: the location of the saved file
     func writeToDisk(at path: Path) throws -> Path {
         let unique = UUID().uuidString
         let directoryPath = path + DHCrypt.subfolderName
         try directoryPath.createDirectory()
-        let filePath = directoryPath + "\(unique).json"
+        let filePath = directoryPath + "\(unique).\(DHCrypt.dataFileExtension)"
         let codableFile = File<CryptHexStore>(path: filePath)
         
         if (try? codableFile.read()) != nil {
