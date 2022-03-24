@@ -37,9 +37,9 @@ class DHCryptographyHexStoreTests: XCTestCase {
     func testWrite() throws {
         let store = DHCryptographyHexStore.with(cryptKey: "", iv: "", cryptValue: "")
         if let path = FileManager.default.documentsDirectoryPath {
-            let writtenFilePath = try store.writeToDisk(at: path)
-            XCTAssertTrue(writtenFilePath.url.absoluteString.contains(DHCryptography.subfolderName))
-            XCTAssertTrue(writtenFilePath.exists)
+            let codableFile = try store.writeToDisk(at: path)
+            XCTAssertTrue(codableFile.path.url.absoluteString.contains(DHCryptography.subfolderName))
+            XCTAssertTrue(codableFile.exists)
         } else {
             XCTFail("Documents Directory Path is nil")
         }

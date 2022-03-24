@@ -53,7 +53,7 @@ open class DHCryptography: DHCryptographing {
                 let key = keyValuePair.key
                 let value = keyValuePair.value
                 if let _ = keyValuePairsDictionary[key] {
-                    return nil
+                    continue
                 } else {
                     keyValuePairsDictionary[key] = value
                 }
@@ -64,17 +64,19 @@ open class DHCryptography: DHCryptographing {
     
     // MARK: - Methods
     
-    public func encrypt(stringDictionary: [String: String]) throws -> Path? {
+    @discardableResult
+    public func encrypt(stringDictionary: [String: String]) throws -> File<DHCryptographyHexStore>? {
         return try encrypt(stringDictionary.data)
     }
     
-    public func encrypt(_ data: Data?) throws -> Path? {
+    @discardableResult
+    public func encrypt(_ data: Data?) throws -> File<DHCryptographyHexStore>? {
         guard let data = data else {
             return nil
         }
 
         let store = data.encrypt()
-        return try store?.writeToDisk(at: cryptPath)
+        return try? store?.writeToDisk(at: cryptPath)
     }
     
     /// Add keys, then use this method to retrieve them at runtime.

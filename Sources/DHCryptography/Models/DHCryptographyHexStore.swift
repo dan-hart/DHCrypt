@@ -30,7 +30,7 @@ public extension DHCryptographyHexStore {
     /// Write this store to disk as a file
     /// - Parameter path: the location to store the data + subfolder directory
     /// - Returns: the location of the saved file
-    func writeToDisk(at path: Path) throws -> Path {
+    func writeToDisk(at path: Path) throws -> File<DHCryptographyHexStore> {
         let unique = UUID().uuidString
         let directoryPath = path + DHCryptography.subfolderName
         try directoryPath.createDirectory()
@@ -43,11 +43,7 @@ public extension DHCryptographyHexStore {
             try codableFile.write(self)
         }
         
-        if codableFile.exists && codableFile.size ?? 0 > 0 {
-            return codableFile.path
-        } else {
-            throw DHCryptographyError.fileDoesNotExist
-        }
+        return codableFile
     }
 }
 
