@@ -1,6 +1,6 @@
 //
-//  CryptHexStore.swift
-//  DHCrypt
+//  DHCryptographyHexStore.swift
+//  DHCryptography
 //
 //  Created by Dan Hart on 3/15/22.
 //
@@ -9,9 +9,9 @@ import Foundation
 import CryptoSwift
 import FileKit
 
-extension CryptHexStore: JSONReadableWritable {}
+extension DHCryptographyHexStore: JSONReadableWritable {}
 
-public struct CryptHexStore: Codable, Equatable {
+public struct DHCryptographyHexStore: Codable, Equatable {
     public var decrypted: Data? {
         let key = Array<UInt8>(hex: cryptKey)
         let iv = Array<UInt8>(hex: iv)
@@ -26,19 +26,19 @@ public struct CryptHexStore: Codable, Equatable {
     public let cryptValue: String
 }
 
-public extension CryptHexStore {
+public extension DHCryptographyHexStore {
     /// Write this store to disk as a file
     /// - Parameter path: the location to store the data + subfolder directory
     /// - Returns: the location of the saved file
     func writeToDisk(at path: Path) throws -> Path {
         let unique = UUID().uuidString
-        let directoryPath = path + DHCrypt.subfolderName
+        let directoryPath = path + DHCryptography.subfolderName
         try directoryPath.createDirectory()
-        let filePath = directoryPath + "\(unique).\(DHCrypt.dataFileExtension)"
-        let codableFile = File<CryptHexStore>(path: filePath)
+        let filePath = directoryPath + "\(unique).\(DHCryptography.dataFileExtension)"
+        let codableFile = File<DHCryptographyHexStore>(path: filePath)
         
         if (try? codableFile.read()) != nil {
-            throw DHCryptError.fileAlreadyExists
+            throw DHCryptographyError.fileAlreadyExists
         } else {
             try codableFile.write(self)
         }
@@ -46,15 +46,15 @@ public extension CryptHexStore {
         if codableFile.exists && codableFile.size ?? 0 > 0 {
             return codableFile.path
         } else {
-            throw DHCryptError.fileDoesNotExist
+            throw DHCryptographyError.fileDoesNotExist
         }
     }
 }
 
-// MARK: CryptHexStore convenience initializers and mutators
-public extension CryptHexStore {
+// MARK: DHCryptographyHexStore convenience initializers and mutators
+public extension DHCryptographyHexStore {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(CryptHexStore.self, from: data)
+        self = try newJSONDecoder().decode(DHCryptographyHexStore.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -76,8 +76,8 @@ public extension CryptHexStore {
          cryptKey: String,
          iv: String,
          cryptValue: String
-     ) -> CryptHexStore {
-         return CryptHexStore(
+     ) -> DHCryptographyHexStore {
+         return DHCryptographyHexStore(
              cryptKey: cryptKey,
              iv: iv,
              cryptValue: cryptValue

@@ -1,5 +1,5 @@
 //
-//  DHCryptErrors.swift
+//  DHCryptographyErrors.swift
 //  
 //
 //  Created by Dan Hart on 3/23/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DHCryptError: String, Error, CaseIterable {
+enum DHCryptographyError: String, Error, CaseIterable {
     case invalidDocumentsPath
     case nilData
     case fileAlreadyExists

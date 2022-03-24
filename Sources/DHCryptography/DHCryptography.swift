@@ -1,22 +1,22 @@
 import Foundation
 import FileKit
 
-open class DHCrypt: DHCrypting {
-    public static var shared: DHCrypting = DHCrypt()
+open class DHCryptography: DHCryptographing {
+    public static var shared: DHCryptographing = DHCryptography()
     
-    public static let subfolderName = "DHCrypt"
+    public static let subfolderName = "DHCryptography"
     public static let dataFileExtension = "json"
     
     public var cryptPath: Path {
         guard let documentsPath = FileManager.default.documentsDirectoryPath else {
             return Path.current
         }
-        return documentsPath + Path(DHCrypt.subfolderName)
+        return documentsPath + Path(DHCryptography.subfolderName)
     }
     
     public var jsonFilePathArray: [Path] {
         let jsonFiles = cryptPath.find(searchDepth: 1) { path in
-            path.pathExtension == DHCrypt.dataFileExtension
+            path.pathExtension == DHCryptography.dataFileExtension
         }
         
         if jsonFiles.isEmpty {
@@ -26,10 +26,10 @@ open class DHCrypt: DHCrypting {
         }
     }
     
-    public var codableFiles: [File<CryptHexStore>] {
-        var codableFiles = [File<CryptHexStore>]()
+    public var codableFiles: [File<DHCryptographyHexStore>] {
+        var codableFiles = [File<DHCryptographyHexStore>]()
         for jsonFilePath in jsonFilePathArray {
-            codableFiles.append(File<CryptHexStore>(path: jsonFilePath))
+            codableFiles.append(File<DHCryptographyHexStore>(path: jsonFilePath))
         }
         return codableFiles
     }

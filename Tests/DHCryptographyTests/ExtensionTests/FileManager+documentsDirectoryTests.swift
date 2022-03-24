@@ -5,7 +5,7 @@
 //  Created by Dan Hart on 3/23/22.
 //
 
-@testable import DHCrypt
+@testable import DHCryptography
 @testable import FileKit
 import XCTest
 

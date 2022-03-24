@@ -1,6 +1,6 @@
 //
 //  Dictionary+data.swift
-//  DHCrypt
+//  DHCryptography
 //
 //  Created by Dan Hart on 3/15/22.
 //
