@@ -6,7 +6,6 @@
 //
 
 @testable import DHCryptography
-@testable import FileKit
 import XCTest
 
 class DHCryptographyHexStoreTests: XCTestCase {
@@ -32,16 +31,5 @@ class DHCryptographyHexStoreTests: XCTestCase {
     func testInit() {
         let store = DHCryptographyHexStore.with(cryptKey: "", iv: "", cryptValue: "")
         XCTAssertNotNil(store)
-    }
-    
-    func testWrite() throws {
-        let store = DHCryptographyHexStore.with(cryptKey: "", iv: "", cryptValue: "")
-        if let path = FileManager.default.documentsDirectoryPath {
-            let codableFile = try store.writeToDisk(at: path)
-            XCTAssertTrue(codableFile.path.url.absoluteString.contains(DHCryptography.subfolderName))
-            XCTAssertTrue(codableFile.exists)
-        } else {
-            XCTFail("Documents Directory Path is nil")
-        }
     }
 }

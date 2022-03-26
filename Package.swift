@@ -20,16 +20,15 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift", .upToNextMajor(from: "1.4.3")),
-        .package(url: "https://github.com/nvzqz/FileKit", .upToNextMajor(from: "6.0.0")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "DHCryptography",
-            dependencies: ["CryptoSwift", "FileKit"]),
+            dependencies: ["CryptoSwift"]),
         .testTarget(
             name: "DHCryptographyTests",
-            dependencies: ["DHCryptography", "CryptoSwift", "FileKit"]),
+            dependencies: ["DHCryptography", "CryptoSwift"]),
     ]
 )

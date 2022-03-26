@@ -7,9 +7,6 @@
 
 import Foundation
 import CryptoSwift
-import FileKit
-
-extension DHCryptographyHexStore: JSONReadableWritable {}
 
 public struct DHCryptographyHexStore: Codable, Equatable {
     public var decrypted: Data? {
@@ -24,27 +21,6 @@ public struct DHCryptographyHexStore: Codable, Equatable {
     public let iv: String
     
     public let cryptValue: String
-}
-
-public extension DHCryptographyHexStore {
-    /// Write this store to disk as a file
-    /// - Parameter path: the location to store the data + subfolder directory
-    /// - Returns: the location of the saved file
-    func writeToDisk(at path: Path) throws -> File<DHCryptographyHexStore> {
-        let unique = UUID().uuidString
-        let directoryPath = path + DHCryptography.subfolderName
-        try directoryPath.createDirectory()
-        let filePath = directoryPath + "\(unique).\(DHCryptography.dataFileExtension)"
-        let codableFile = File<DHCryptographyHexStore>(path: filePath)
-        
-        if (try? codableFile.read()) != nil {
-            throw DHCryptographyError.fileAlreadyExists
-        } else {
-            try codableFile.write(self)
-        }
-        
-        return codableFile
-    }
 }
 
 // MARK: DHCryptographyHexStore convenience initializers and mutators
