@@ -12,3 +12,5 @@ try DHCryptography.shared.encrypt(stringDictionary: ["TOKEN": "1234"])
 let value = try DHCryptography.shared.decryptValue(fromKey: "TOKEN")
 print(value) // "1234"
 ```
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/codedbydan)
